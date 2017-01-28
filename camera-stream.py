@@ -5,11 +5,12 @@ from time import strftime
 
 with picamera.PiCamera() as camera:
     camera.resolution = (640, 480)
+    camera.framerate = 60
     camera.start_preview()
-    
-    camera.start_recording('timestamped.h264')
-    file = open("time.txt", "a")
-    s = strftime ("%a, %d %b %Y %H:%M:%S")
+    s1 = strftime ("%d-%b-%Y-%H:%M:%S.h264")
+    camera.start_recording(str(s1))
+    s = strftime ("%d-%b-%Y-%H:%M:%S.txt")
+    file = open(str(s), "a")
     file.write ("video_start ")
     file.write (str(s))
     file.write ('\n')
@@ -21,4 +22,4 @@ with picamera.PiCamera() as camera:
     file.write ('\n')
     file.close()
     print("recorded")
-       
+quit()       
